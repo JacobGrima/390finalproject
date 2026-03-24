@@ -23,7 +23,7 @@ affiliations:
     address: University Ave, W 
     city: Waterloo
     state: Ontario 
-    postal-code: N2l 3G1
+    postal-code: N2l3G1
 
 abstract: |
   For our final assignment, we coded an Eriksen Flanker Task on the students of Psych 390. 
@@ -31,7 +31,7 @@ keywords:
   - Eriksen Flanker 
   - Congruent 
   - Incongruent 
-date: 2026-04-22
+date: 2026-4-22
 bibliography: bibliography.bib
 format:
   elsevier-pdf:
@@ -54,14 +54,42 @@ used @hkirsch94_github and @marsja_flankercode to build this code.
 
 # Results 
 
+
 one in-line stat
 one significant statistical analysis 
 one plot generated from code -- with appropriate automatic label 
+use a repeated meausres anova comparing reaction time as a function of the stimulus.
+
+```{python}
+import pandas as pd
+from statsmodels.formula.api import ols
+from statsmodels.stats.anova import anova_lm
+
+# Read in the CSV data
+data = pd.read_csv('csvforanova.csv')
+
+# Filter out rows with missing rt values
+data = data.dropna(subset=['rt'])
+
+# Convert rt to numeric
+data['rt'] = pd.to_numeric(data['rt'])
+
+# Run the repeated measures ANOVA
+model = ols('rt ~ C(stimulus)', data=data).fit()
+anova_table = anova_lm(model)
+
+# Print the ANOVA table
+print(anova_table)
+
+```
+
+
+
 
 @fig-significantfinding is generated using a python chunk.
 
 ```{python}
-#| label: fig-significantfinding
+#| label: fig-significantfinding 
 #| fig-cap: A figure of a significant finding of ours using matplotlib.org
 #| fig-width: 5
 #| fig-height: 5

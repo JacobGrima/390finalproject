@@ -2,7 +2,7 @@ trial,block,type,direction,stimulus,response,accuracy,rt
 1,practice,incongruent,left,>><>>,left,1,1091
 2,practice,incongruent,left,>><>>,left,1,487
 3,practice,congruent,right,>>>>>,right,1,635
-4,practice,incongruent,right,<<><<,right,1,579s
+4,practice,incongruent,right,<<><<,right,1,579
 1,main,congruent,left,<<<<<,left,1,441
 2,main,incongruent,right,<<><<,left,0,393
 3,main,congruent,left,<<<<<,left,1,426
