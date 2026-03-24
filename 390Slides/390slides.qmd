@@ -1,0 +1,15 @@
+---
+title: "My Presentation"
+author: "Your Name"
+date: today
+format: revealjs
+---
+
+## Slide 1
+
+- First bullet point
+- Second bullet point
+
+## Slide 2
+
+Some content here
