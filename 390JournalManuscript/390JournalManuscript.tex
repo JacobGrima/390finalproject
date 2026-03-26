@@ -271,41 +271,69 @@ anova comparing reaction time as a function of the stimulus.
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\CommentTok{\#code built by aider model StepFun: Step 3.5 Flash (free) and edited by ChatGPT}
 \ImportTok{import}\NormalTok{ pandas }\ImportTok{as}\NormalTok{ pd}
-\end{Highlighting}
-\end{Shaded}
+\ImportTok{from}\NormalTok{ statsmodels.stats.anova }\ImportTok{import}\NormalTok{ AnovaRM}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\ImportTok{from}\NormalTok{ statsmodels.formula.api }\ImportTok{import}\NormalTok{ ols}
-\ImportTok{from}\NormalTok{ statsmodels.stats.anova }\ImportTok{import}\NormalTok{ anova\_lm}
-
-\CommentTok{\#coded with the help of aider }
 \CommentTok{\# Read in the CSV data}
-\NormalTok{data }\OperatorTok{=}\NormalTok{ pd.read\_csv(}\StringTok{\textquotesingle{}csvforanova.csv\textquotesingle{}}\NormalTok{)}
+\NormalTok{data }\OperatorTok{=}\NormalTok{ pd.read\_csv(}\StringTok{"csvforanova.csv"}\NormalTok{)}
 
 \CommentTok{\# Filter out rows with missing rt values}
-\NormalTok{data }\OperatorTok{=}\NormalTok{ data.dropna(subset}\OperatorTok{=}\NormalTok{[}\StringTok{\textquotesingle{}rt\textquotesingle{}}\NormalTok{])}
+\NormalTok{data }\OperatorTok{=}\NormalTok{ data.dropna(subset}\OperatorTok{=}\NormalTok{[}\StringTok{"rt"}\NormalTok{])}
 
 \CommentTok{\# Convert rt to numeric}
-\NormalTok{data[}\StringTok{\textquotesingle{}rt\textquotesingle{}}\NormalTok{] }\OperatorTok{=}\NormalTok{ pd.to\_numeric(data[}\StringTok{\textquotesingle{}rt\textquotesingle{}}\NormalTok{])}
+\NormalTok{data[}\StringTok{"rt"}\NormalTok{] }\OperatorTok{=}\NormalTok{ pd.to\_numeric(data[}\StringTok{"rt"}\NormalTok{], errors}\OperatorTok{=}\StringTok{"coerce"}\NormalTok{)}
+\NormalTok{data }\OperatorTok{=}\NormalTok{ data.dropna(subset}\OperatorTok{=}\NormalTok{[}\StringTok{"rt"}\NormalTok{])}
 
-\CommentTok{\# Run the repeated measures ANOVA}
-\NormalTok{model }\OperatorTok{=}\NormalTok{ ols(}\StringTok{\textquotesingle{}rt \textasciitilde{} C(stimulus)\textquotesingle{}}\NormalTok{, data}\OperatorTok{=}\NormalTok{data).fit()}
-\NormalTok{anova\_table }\OperatorTok{=}\NormalTok{ anova\_lm(model)}
+\CommentTok{\# Keep only correct trials if accuracy exists}
+\ControlFlowTok{if} \StringTok{"accuracy"} \KeywordTok{in}\NormalTok{ data.columns:}
+\NormalTok{    data }\OperatorTok{=}\NormalTok{ data[data[}\StringTok{"accuracy"}\NormalTok{] }\OperatorTok{==} \DecValTok{1}\NormalTok{]}
+
+\CommentTok{\# Keep only main trials if block exists}
+\ControlFlowTok{if} \StringTok{"block"} \KeywordTok{in}\NormalTok{ data.columns:}
+\NormalTok{    data }\OperatorTok{=}\NormalTok{ data[data[}\StringTok{"block"}\NormalTok{] }\OperatorTok{==} \StringTok{"main"}\NormalTok{]}
+
+\CommentTok{\# Repeated measures ANOVA}
+\CommentTok{\# For the standard flanker analysis, use 2 conditions:}
+\CommentTok{\# congruent vs incongruent}
+\NormalTok{rm\_anova }\OperatorTok{=}\NormalTok{ AnovaRM(}
+\NormalTok{    data}\OperatorTok{=}\NormalTok{data,}
+\NormalTok{    depvar}\OperatorTok{=}\StringTok{"rt"}\NormalTok{,}
+\NormalTok{    subject}\OperatorTok{=}\StringTok{"participant"}\NormalTok{,}
+\NormalTok{    within}\OperatorTok{=}\NormalTok{[}\StringTok{"type"}\NormalTok{],}
+\NormalTok{    aggregate\_func}\OperatorTok{=}\StringTok{"mean"}
+\NormalTok{)}
+
+\NormalTok{results }\OperatorTok{=}\NormalTok{ rm\_anova.fit()}
 
 \CommentTok{\# Print the ANOVA table}
-\BuiltInTok{print}\NormalTok{(anova\_table)}
+\BuiltInTok{print}\NormalTok{(results)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-                df        sum_sq        mean_sq        F    PR(>F)
-C(stimulus)    3.0  9.378818e+05  312627.276492  8.45036  0.000019
-Residual     370.0  1.368842e+07   36995.735834      NaN       NaN
+              Anova
+==================================
+     F Value Num DF  Den DF Pr > F
+----------------------------------
+type 56.7022 1.0000 15.0000 0.0000
+==================================
 \end{verbatim}
 
-\textbf{?@fig-significantfinding} is generated using a python chunk.
+Figure~\ref{fig-significantfinding} is generated using a python chunk.
+
+\begin{figure}
+
+\centering{
+
+\pandocbounded{\includegraphics[keepaspectratio]{390JournalManuscript_files/figure-pdf/fig-significantfinding-output-1.pdf}}
+
+}
+
+\caption{\label{fig-significantfinding}A figure of a significant finding
+of ours using matplotlib.org}
+
+\end{figure}%
 
 The template for this plot was found on \citet{matplotlib_website}
 

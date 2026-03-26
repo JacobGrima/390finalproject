@@ -1,6 +1,6 @@
 import pandas as pd 
 
-df = pd.read_csv("flankerdata/combined.csv")
+df = pd.read_csv("combined.csv")
 
 #add partcipant id 
 n_participants = 16

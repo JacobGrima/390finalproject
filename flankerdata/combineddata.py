@@ -1,12 +1,31 @@
-with open("combined.csv", "w") as out:
-    first = True 
+import pandas as pd
 
-    for name in ["flankerdata/flankerdata1.csv", "flankerdata/flankerdata2.csv", "flankerdata/flankerdata3.csv", "flankerdata/flankerdata4.csv", "flankerdata/flankerdata5.csv", "flankerdata/flankerdata6.csv", "flankerdata/flankerdata7.csv", "flankerdata/flankerdata8.csv", "flankerdata/flankerdata9.csv", "flankerdata/flankerdata10.csv", "flankerdata/flankerdata11.csv", "flankerdata/flankerdata12.csv", "flankerdata/flankerdata13.csv", "flankerdata/flankerdata14.csv", "flankerdata/flankerdata15.csv", "flankerdata/flankerdata16.csv"]:
-        with open(name) as file: 
-            lines = file.readlines() #read all lines in file and store them in a list called lines 
+dfs = []
 
-            if first:   #first file only
-                out.writelines(lines)   #write everything into this combinedcvsv file 
-                first = False   #done with first 
-            else: 
-                out.writelines(lines[1:])   #write everything except first row for all other files 
+files = [
+    "flankerdata1.csv",
+    "flankerdata2.csv",
+    "flankerdata3.csv",
+    "flankerdata4.csv",
+    "flankerdata5.csv",
+    "flankerdata6.csv",
+    "flankerdata7.csv",
+    "flankerdata8.csv",
+    "flankerdata9.csv",
+    "flankerdata10.csv",
+    "flankerdata11.csv",
+    "flankerdata12.csv",
+    "flankerdata13.csv",
+    "flankerdata14.csv",
+    "flankerdata15.csv",
+    "flankerdata16.csv"
+]
+
+for i, file in enumerate(files):
+    temp = pd.read_csv(file)
+    temp["participant"] = i + 1   # ✅ THIS is the key line
+    dfs.append(temp)
+
+df = pd.concat(dfs, ignore_index=True)
+
+df.to_csv("combined.csv", index=False)

@@ -60,30 +60,45 @@ one significant statistical analysis
 one plot generated from code -- with appropriate automatic label 
 use a repeated meausres anova comparing reaction time as a function of the stimulus.
 
+
 ```{python}
+#code built by aider model StepFun: Step 3.5 Flash (free) and edited by ChatGPT
 import pandas as pd
-```
+from statsmodels.stats.anova import AnovaRM
 
-```{python}
-from statsmodels.formula.api import ols
-from statsmodels.stats.anova import anova_lm
-
-#coded with the help of aider 
 # Read in the CSV data
-data = pd.read_csv('csvforanova.csv')
+data = pd.read_csv("csvforanova.csv")
 
 # Filter out rows with missing rt values
-data = data.dropna(subset=['rt'])
+data = data.dropna(subset=["rt"])
 
 # Convert rt to numeric
-data['rt'] = pd.to_numeric(data['rt'])
+data["rt"] = pd.to_numeric(data["rt"], errors="coerce")
+data = data.dropna(subset=["rt"])
 
-# Run the repeated measures ANOVA
-model = ols('rt ~ C(stimulus)', data=data).fit()
-anova_table = anova_lm(model)
+# Keep only correct trials if accuracy exists
+if "accuracy" in data.columns:
+    data = data[data["accuracy"] == 1]
+
+# Keep only main trials if block exists
+if "block" in data.columns:
+    data = data[data["block"] == "main"]
+
+# Repeated measures ANOVA
+# For the standard flanker analysis, use 2 conditions:
+# congruent vs incongruent
+rm_anova = AnovaRM(
+    data=data,
+    depvar="rt",
+    subject="participant",
+    within=["type"],
+    aggregate_func="mean"
+)
+
+results = rm_anova.fit()
 
 # Print the ANOVA table
-print(anova_table)
+print(results)
 
 ```
 
@@ -100,6 +115,30 @@ print(anova_table)
 #| fig-align: center
 #| out-width: 50%
 #| echo: false
+
+import pandas as pd #is not the final plot, will pick a prettier one...
+import matplotlib.pyplot as plt
+
+df = pd.read_csv("csvforanova.csv")
+#| print(df.columns)
+
+#must compute participant means 
+means = df.groupby(['participant', 'type'])['rt'].mean().reset_index() #computes one mean for each condition (congruent vs incongruent)
+
+#must compute group means 
+group_means = means.groupby('type')['rt'].mean()
+
+#we need the standard error of the mean (SEM)
+group_sem = means.groupby('type')['rt'].sem()
+
+#values and plotting
+conditions = group_means.index
+values = group_means.values
+errors = group_sem.values
+plt.bar(conditions, values, yerr=errors, capsize=5)
+plt.ylabel("Reaction Time (ms)")
+plt.title("Effect of Congruency on Reaction Time")
+plt.show()
 ```
 
 The template for this plot was found on @matplotlib_website

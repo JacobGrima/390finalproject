@@ -15,15 +15,20 @@ format: revealjs
 - First bullet point
 - Second bullet point
 
-## Results
-- First bullet point
-- Second bullet point
+## Results 
+- For our Flanker task, we ran a repeated measures ANOVA
+    - Independent variable: congruency 
+    - Dependent variable: response time 
+- Removed inaccurate trials
+- Our ANOVA gave us F(1,15) = 56.70, p<.001
 
+## Figure 
+![](slidesfigure.png)
 
 ## Discussion
-- First bullet point
-- Second bullet point
-
+- The results show that there are differences in response time depending on the congruency of the trials 
+- Incongruent trials has longer reaction times than congruent trials 
+- We reject the null hypothesis 
 
 ## Conclusion
 - First bullet point
