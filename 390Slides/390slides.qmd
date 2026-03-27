@@ -22,7 +22,10 @@ format: revealjs
 - Removed inaccurate trials
 - Our ANOVA gave us F(1,15) = 56.70, p<.001
 
-## Figure 
+## ANOVA Figure 
+![](ANOVAfigure.png)
+
+## Graph Figure 
 ![](slidesfigure.png)
 
 ## Discussion
@@ -31,6 +34,7 @@ format: revealjs
 - We reject the null hypothesis 
 
 ## Conclusion
-- First bullet point
-- Second bullet point
+- Our findings align with typical Erikson Flanker Task studies
+- Arrow congruency significantly affects response time, supporting the flanker interference effect
+- Future research could explore individual differences in cognitive control between different demographics
 
