@@ -15,9 +15,33 @@ format: revealjs
 - Second bullet point
 
 ## Methods
+-Design
+    -Within-subject design
+-Conditions:
+    -Congruent vs. Incongruent
+    -Left vs. Right
+-Participants
+    -N = 16
+    -Recruited from classmates
+-Measures
+    -Reaction time (ms)
+    -Accuracy (%)
 
-- First bullet point
-- Second bullet point
+## Procedure & Task
+-Procedure
+    -4 practice trials (with feedback)
+    -20 experimental trials (no feedback)
+    -Trials randomly generated
+-Stimuli & Response
+    -Arrow strings (e.g., <<<<<, >><>>)
+    -Respond to the center arrow only
+-Trial Structure
+    -Fixation (500 ms)
+    -Stimulus (max 2000 ms)
+    -Inter-trial interval (700 ms)
+-Implementation
+    -Implemented in Python using pygame
+    -Automatically recorded RT and accuracy
 
 ## Results 
 - For our Flanker task, we ran a repeated measures ANOVA
