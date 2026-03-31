@@ -29,21 +29,23 @@ format:
     - Reaction time (ms)
     - Accuracy (%)
 
-## Procedure & Task
+## Procedure
 - Procedure
-    - 4 practice trials (with feedback)
-    - 20 experimental trials (no feedback)
-    - Trials randomly generated
-- Stimuli & Response
-    - Arrow strings (e.g., <<<<<, >><>>)
-    - Respond to the center arrow only
+  - 4 practice trials (with feedback)
+  - 20 experimental trials (no feedback)
+  - Randomized across conditions
 - Trial Structure
-    - Fixation (500 ms)
-    - Stimulus (max 2000 ms)
-    - Inter-trial interval (700 ms)
+  - Fixation (500 ms)
+  - Stimulus (≤ 2000 ms)
+  - Inter-trial interval (700 ms)
+
+## Task & Implementation
+- Stimuli & Response
+  - Arrow strings (e.g., <<<<<, >><>>)
+  - Respond to the center arrow
 - Implementation
-    - Implemented in Python using pygame
-    - Automatically recorded RT and accuracy
+  - Python (pygame)
+  - Recorded RT and accuracy automatically
 
 ## Results 
 - For our Flanker task, we ran a repeated measures ANOVA
