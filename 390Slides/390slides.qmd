@@ -11,13 +11,16 @@ format:
 ---
 
 ## Introduction
+- Developed by Barbara A. Eriksen & Charles W. Eriksen (1974)
+- Measures selective attention & response inhibition
+- Congruent: flankers match target → faster responses
+- Incongruent: flankers conflict → slower, more errors
 
-- First bullet point
-- Second bullet point
-
-## History & Background
-- First bullet point
-- Second bullet point
+## Why It's Relevant
+- Shows how distractions interfere with attention
+- Used to study cognitive control & conflict processing
+- Linked to brain activity (e.g., conflict monitoring systems)
+- Applied in research on ADHD, anxiety, and decision-making
 
 ## Methods
 - Design
