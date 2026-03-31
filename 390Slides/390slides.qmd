@@ -25,6 +25,9 @@ format:
 - Conditions:
     - Congruent vs. Incongruent
     - Left vs. Right
+- Participants
+    - N = 16
+    - Recruited from classmates
 - Measures
     - Reaction time (ms)
     - Accuracy (%)
@@ -37,8 +40,6 @@ format:
 - Stimuli & Response
     - Arrow strings (e.g., <<<<<, >><>>)
     - Respond to the center arrow only
-
-## Structure & Implementation
 - Trial Structure
     - Fixation (500 ms)
     - Stimulus (max 2000 ms)
@@ -66,6 +67,6 @@ format:
 - We reject the null hypothesis 
 
 ## Conclusion
-- Our findings align with typical Erikson Flanker Task studies
 - Arrow congruency significantly affects response time, supporting the flanker interference effect
+- Our findings align with the original Eriksen & Eriksen (1974) studies in direction, magnitude (~87ms interference effect), and statistical strength (F > 56)
 - Future research could explore individual differences in cognitive control between different demographics
