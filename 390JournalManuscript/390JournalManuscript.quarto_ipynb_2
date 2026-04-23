@@ -1,0 +1,693 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "id": "841a94d9",
+   "metadata": {},
+   "source": [
+    "---\n",
+    "title: Eriksen Flanker Experiment \n",
+    "subtitle: Results from The Eriksen Flanker Task Conducted on Psych390 Students \n",
+    "author:\n",
+    "  - name: Rubee Kung \n",
+    "    email: rkung@uwaterloo.ca\n",
+    "    affiliations: [University of Waterloo]\n",
+    "    attributes:\n",
+    "        corresponding: true\n",
+    "  - name: Nicole Hua\n",
+    "    email: nhua@uwaterloo.ca\n",
+    "    affiliations: [University of Waterloo]\n",
+    "  - name: Jacob Grima\n",
+    "    email: jgrima@uwaterloo.ca\n",
+    "    affiliations: [University of Waterloo]\n",
+    "  - name: Eda Kubra Ozkaya\n",
+    "    email: ekozkaya@uwaterloo.ca\n",
+    "    affiliations: [University of Waterloo]\n",
+    "affiliations: \n",
+    "  - id: uw \n",
+    "    name: University of Waterloo \n",
+    "    Department: Department of Psychology \n",
+    "    address: University Ave, W \n",
+    "    city: Waterloo\n",
+    "    state: Ontario \n",
+    "    postal-code: N2l3G1\n",
+    "\n",
+    "abstract: The Eriksen flanker task is a widely used measure of selective attention and inhibitory control, in which individuals respond to a central target while ignoring surrounding distractor stimuli. The present study aimed to replicate the flanker interference effect using an arrow-based variation. A sample of 16 undergraduate students from the University of Waterloo participated in a within-subjects experiment in which reaction time and accuracy were measured across 20 trials varying in congruency (congruent vs. incongruent) and direction (left vs. right). Results indicated that participants responded significantly slower on incongruent trials compared to congruent trials, F(1, 15) = 56.70, p < .001, and also showed reduced accuracy in incongruent conditions, demonstrating the expected interference effect. No significant effects of direction or interaction between direction and congruency were observed, suggesting that performance differences were driven specifically by distractor congruency. These findings support theories of selective attention and cognitive control by showing that task-irrelevant stimuli are processed automatically and can interfere with response selection. Overall, the results replicate the flanker effect and highlight the utility of the flanker paradigm for examining attentional control.\n",
+    "\n",
+    "\n",
+    "keywords: \n",
+    "  - Eriksen Flanker \n",
+    "  - Congruent \n",
+    "  - Incongruent \n",
+    "  - Congruency Effect\n",
+    "  - Selective Attention\n",
+    "  - Response Inhibition \n",
+    "  - Cognitive Control \n",
+    "  - Reaction Time \n",
+    "  - Repeated Measures ANOVA\n",
+    "date: 2026-4-22\n",
+    "bibliography: bibliography.bib\n",
+    "format:\n",
+    "  elsevier-pdf:\n",
+    "    keep-tex: true\n",
+    "    journal:\n",
+    "      name: Journal Name\n",
+    "      formatting: preprint\n",
+    "      # model: 3p # Don't set a model with preprint\n",
+    "      cite-style: authoryear\n",
+    "---\n",
+    "\n",
+    "# Introduction\n",
+    "Selective attention is a fundamental cognitive process that allows individuals to focus on relevant information while ignoring irrelevant or distracting stimuli. One of the most widely used paradigms for studying selective attention and cognitive control is the Eriksen flanker task, originally introduced by @eriksen1974. \n",
+    "\n",
+    "In the original version of the task, letter strings were used, where participants responded to a central target letter embedded within a row of distractor letters. Congruent trials consisted of flankers that were associated with the same response as the target (e.g., HHHKHHH), whereas incongruent trials contained flankers associated with a different response. @eriksen1974 demonstrated that reaction times were significantly slower and error rates were higher in congruent trials; this phenomenon is known as the flanker effect. This highlights the difficulty of suppressing irrelevant information and provides insight into the mechanisms of attentional control. \n",
+    "\n",
+    "However, in this task, instead of letters, arrows were used, and participants were required to respond to a target stimulus while ignoring adjacent \"flanker\" stimuli, which can either support the same response (congruent trials) or interfere with it (incongruent trials). Congruent trials consisted of stimuli where all arrows pointed in the same direction, facilitating response selection. In contrast, incongruent trials included arrows pointing in opposite directions, creating response conflict and requiring additional cognitive control to suppress irrelevant information. Reaction time was used as the primary dependent variable as it provides a sensitive measure of processing difficulty and interference effects. \n",
+    "Research consistently demonstrates that incongruent trials produce slower reaction times and higher error rates, reflecting the cognitive cost of resolving response conflict [@eriksen1974].\n",
+    "\n",
+    "In addition to its theoretical significance, the flanker task is widely used as a methodological tool for studying attention and executive function across different populations and contexts. Variants of the task, such as the Attention Network test, extend its use by examining multiple components of attention, including alerting, orienting, and executive control [@fan2002]. The task has also been employed in neuropsychological and developmental research to investigate differences in cognitive control across age groups and clinical populations. These applications highlight the flexibility of the flanker paradigm as both a research and teaching tool. \n",
+    "\n",
+    "According to conflict monitoring theory, interference effects arise because incongruent stimuli activate competing responses, which must then be resolved through cognitive control processes [@botvinick2001]. Neuropsychological research has identified anterior cingulate cortex (ACC) as a key structure involved in detecting this conflict and signaling the need for increased control. Additionally, sequential effects such as the Gratton effect demonstrate that cognitive control is adaptive, with reduced interference following high-conflict trials, suggesting that the brain can adapt and adjust based on prior experience [@gratton1992].\n",
+    "\n",
+    "The flanker task therefore provides a tool for examining how the brain manages competing information and maintains goal-directed behaviour. It allows researchers to analyze both speed and accuracy costs associated with interference and to investigate how different factors contribute to cognitive control. Despite variations in task design, a consistent finding across studies is that incongruent trials lead to slower reaction times and decreased accuracy compared to congruent trials.\n",
+    "\n",
+    "Based on previous findings, we hypothesized that reaction times would be significantly longer in incongruent trials compared to congruent trials. This prediction reflects the increased cognitive demand required to resolve conflicting information and select the correct response. The null hypothesis states that there would be no difference in reaction time between conditions. By testing these hypotheses using a repeated-measure ANOVA, the study aims to quantify the effect of congruency on performance and determine whether the observed differences are statistically significant\n",
+    "\n",
+    "Overall, this study uses the flanker task as a simple but effective framework to demonstrate both a classical cognitive effect and the principles of reproducible scientific reporting. The present study builds on this body of research by examining the effect of congruency on response time and accuracy in a within-subjects design. In addition to a standard comparison between congruent and incongruent results.\n",
+    "\n",
+    "\n",
+    "# Methods \n",
+    "## Participants\n",
+    "A total of N = 16 participants were recruited from classmates and personal contacts. Participation was voluntary, and no formal screening criteria were applied, as this project was conducted as a course-based demonstration of experimental tools rather than formal research.\n",
+    "\n",
+    "## Design\n",
+    "The experiment employed a within-subject design in which all participants completed all experimental conditions. The task included two independent variables: congruency (congruent vs. incongruent trials) and direction (left vs. right). The primary dependent variables were reaction time (RT), measured in milliseconds, and accuracy, coded as correct (1) or incorrect (0).\n",
+    "\n",
+    "## Task and Stimuli\n",
+    "The experiment was based on a modified Eriksen flanker task, similar to what was done in the Stoffels & Van der Molen (1988) study, as this study used arrows instead of letters. In each trial, participants were presented with a horizontal array of five arrows. In congruent trials, all arrows pointed in the same direction, whereas in incongruent trials, the central arrow pointed in an opposite direction from the surrounding arrows. Participants were instructed to respond to the direction of the central arrow while ignoring the flanking arrows, and respond as quickly and accurately as possible. Responses were made using the left and right arrow keys on a standard keyboard.\n",
+    "\n",
+    "## Procedure\n",
+    "Participants first completed four practice trials with feedback to familiarize themselves with the task. Following the practice phase, they completed 20 experimental trials without feedback. Trials were randomly generated across conditions, ensuring that both congruent and incongruent trials, as well as left and right directions, were represented. Each trial began with a fixation cross presented for 500 ms, followed by the stimulus, which remained on the screen until a response was made or for a maximum of 2000 ms. After the response or timeout, a blank screen was presented for an inter-trial interval of 700 ms before the next trial began.\n",
+    "\n",
+    "## Apparatus and Implementation\n",
+    "The task was implemented in Python using the pygame library, which enabled precise control over stimulus presentation and response collection. Reaction time was recorded as the interval between stimulus onset and the participant’s keypress, and accuracy was determined by comparing the response to the correct direction for each trial. All trial-level data, including condition, response, accuracy, and reaction time, were automatically recorded and saved as CSV files for each participant.The implementation was designed to ensure consistent timing and reproducible data collection across participants.\n",
+    "\n",
+    "## Data Analysis \n",
+    "The data from each participant’s CSV file were compiled into a single dataset using Python. All statistical analyses were conducted in Python. Prior to analysis, practice trials were excluded, and inaccurate trials were removed from analyses of reaction time.\n",
+    "Mean reaction time and mean accuracy were calculated for all conditions. A one-way repeated measures analysis of variance (ANOVA) was conducted to examine the effect of congruency (congruent vs. incongruent) on reaction time and accuracy. In addition, a 2 × 2 repeated measures ANOVA was conducted to examine the effects of congruency (congruent vs. incongruent) and direction (left vs. right) on reaction time and accuracy.\n",
+    "Although congruency was the primary variable of interest, direction was included based on prior research suggesting that visual congruency reflects both perceptual and motor processes (Coles, 1985, as cited in @stoffels1988). \n",
+    "\n",
+    "\n",
+    "# Results "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "id": "518bd37f",
+   "metadata": {
+    "message": false
+   },
+   "outputs": [],
+   "source": [
+    "#| echo: false\n",
+    "#| warning: false\n",
+    "\n",
+    "import pandas as pd \n",
+    "from statsmodels.stats.anova import AnovaRM\n",
+    "\n",
+    "data = pd.read_csv(\"../flankerdata/combined.csv\")\n",
+    "# keep only main trials\n",
+    "data = data[data[\"block\"] == \"main\"]\n",
+    "#---\n",
+    "#Descriptive Statistics -- Mean Reaction Time and Mean Accuracy\n",
+    "#---\n",
+    "rt_desc = data[data[\"accuracy\"] == 1].copy()\n",
+    "rt_desc[\"rt\"] = pd.to_numeric(rt_desc[\"rt\"], errors=\"coerce\")\n",
+    "rt_desc = rt_desc.dropna(subset=[\"rt\"])\n",
+    "\n",
+    "#print(\"Mean RT:\")\n",
+    "#print(rt_desc.groupby(\"type\")[\"rt\"].mean())\n",
+    "\n",
+    "#print(\"\\nAccuracy:\")\n",
+    "#print(data.groupby(\"type\")[\"accuracy\"].mean())\n",
+    "\n",
+    "#---\n",
+    "#One-way Repeated Measures ANOVA - Reaction Time (correct trials only)\n",
+    "#---\n",
+    "\n",
+    "\n",
+    "rt_data = data[data[\"accuracy\"] == 1].copy()\n",
+    "rt_data[\"rt\"] = pd.to_numeric(rt_data[\"rt\"], errors=\"coerce\")\n",
+    "rt_data = rt_data.dropna(subset=[\"rt\"])\n",
+    "\n",
+    "rt_results1way = AnovaRM(\n",
+    "    data=rt_data,\n",
+    "    depvar=\"rt\",\n",
+    "    subject=\"participant\",\n",
+    "    within=[\"type\"],\n",
+    "    aggregate_func=\"mean\"\n",
+    ").fit()\n",
+    "\n",
+    "#print(\"\\nRT 1-way:\")\n",
+    "#print(rt_results1way)\n",
+    "\n",
+    "#in-line stat\n",
+    "rt1 = rt_results1way.anova_table.iloc[0]\n",
+    "rt1_p = rt1[\"Pr > F\"]\n",
+    "rt1_p_txt = \"< .001\" if rt1_p < .001 else f\"= {rt1_p:.3f}\".replace(\"0.\", \".\")\n",
+    "\n",
+    "rt1_stat = (\n",
+    "    f\"F({int(rt1['Num DF'])}, {int(rt1['Den DF'])}) = \"\n",
+    "    f\"{rt1['F Value']:.2f}, p {rt1_p_txt}\"\n",
+    ")\n",
+    "\n",
+    "\n",
+    "#---\n",
+    "#One-way Repeated Measures ANOVA - Accuracy (all trials)\n",
+    "#---\n",
+    "acc_results1way = AnovaRM(\n",
+    "    data=data,\n",
+    "    depvar=\"accuracy\",\n",
+    "    subject=\"participant\",\n",
+    "    within=[\"type\"],\n",
+    "    aggregate_func=\"mean\"\n",
+    ").fit()\n",
+    "\n",
+    "#print(\"\\nAccuracy 1-way:\")\n",
+    "#print(acc_results1way)\n",
+    "\n",
+    "#in-line stat\n",
+    "acc1 = acc_results1way.anova_table.iloc[0]\n",
+    "acc1_p = acc1[\"Pr > F\"]\n",
+    "acc1_p_txt = \"< .001\" if acc1_p < .001 else f\"= {acc1_p:.3f}\".replace(\"0.\", \".\")\n",
+    "\n",
+    "acc1_stat = (\n",
+    "    f\"F({int(acc1['Num DF'])}, {int(acc1['Den DF'])}) = \"\n",
+    "    f\"{acc1['F Value']:.2f}, p {acc1_p_txt}\"\n",
+    ")\n",
+    "\n",
+    "#---\n",
+    "#2 x 2 Repeated Measures ANOVA - Reaction Time (correct trials only)\n",
+    "#---\n",
+    "rt = data[data[\"accuracy\"] == 1].copy()\n",
+    "\n",
+    "rt_agg = rt.groupby([\"participant\", \"type\", \"direction\"], as_index=False)[\"rt\"].mean()\n",
+    "\n",
+    "# keep only participants with all 4 conditions\n",
+    "rt_agg = rt_agg.groupby(\"participant\").filter(lambda x: len(x) == 4)\n",
+    "\n",
+    "rt_results2way = AnovaRM(\n",
+    "    data=rt_agg,\n",
+    "    depvar=\"rt\",\n",
+    "    subject=\"participant\",\n",
+    "    within=[\"type\", \"direction\"]\n",
+    ").fit()\n",
+    "\n",
+    "#print(\"\\nRT 2x2:\")\n",
+    "#print(rt_results2way)\n",
+    "\n",
+    "#inline stat \n",
+    "rt2_type = rt_results2way.anova_table.loc[\"type\"]\n",
+    "rt2_dir = rt_results2way.anova_table.loc[\"direction\"]\n",
+    "rt2_int = rt_results2way.anova_table.loc[\"type:direction\"]\n",
+    "\n",
+    "rt2_type_p = rt2_type[\"Pr > F\"]\n",
+    "rt2_dir_p = rt2_dir[\"Pr > F\"]\n",
+    "rt2_int_p = rt2_int[\"Pr > F\"]\n",
+    "\n",
+    "rt2_type_p_txt = \"< .001\" if rt2_type_p < .001 else f\"= {rt2_type_p:.3f}\".replace(\"0.\", \".\")\n",
+    "rt2_dir_p_txt = \"< .001\" if rt2_dir_p < .001 else f\"= {rt2_dir_p:.3f}\".replace(\"0.\", \".\")\n",
+    "rt2_int_p_txt = \"< .001\" if rt2_int_p < .001 else f\"= {rt2_int_p:.3f}\".replace(\"0.\", \".\")\n",
+    "\n",
+    "rt2_cong_stat = (\n",
+    "    f\"F({int(rt2_type['Num DF'])}, {int(rt2_type['Den DF'])}) = \"\n",
+    "    f\"{rt2_type['F Value']:.2f}, p {rt2_type_p_txt}\"\n",
+    ")\n",
+    "\n",
+    "rt2_dir_stat = (\n",
+    "    f\"F({int(rt2_dir['Num DF'])}, {int(rt2_dir['Den DF'])}) = \"\n",
+    "    f\"{rt2_dir['F Value']:.2f}, p {rt2_dir_p_txt}\"\n",
+    ")\n",
+    "\n",
+    "rt2_int_stat = (\n",
+    "    f\"F({int(rt2_int['Num DF'])}, {int(rt2_int['Den DF'])}) = \"\n",
+    "    f\"{rt2_int['F Value']:.2f}, p {rt2_int_p_txt}\"\n",
+    ")\n",
+    "\n",
+    "#---\n",
+    "#2 x 2 Repeated Measures ANOVA - Accuracy (all trials)\n",
+    "#---\n",
+    "acc_agg = data.groupby([\"participant\", \"type\", \"direction\"], as_index=False)[\"accuracy\"].mean()\n",
+    "\n",
+    "acc_agg = acc_agg.groupby(\"participant\").filter(lambda x: len(x) == 4)\n",
+    "\n",
+    "acc_results2way = AnovaRM(\n",
+    "    data=acc_agg,\n",
+    "    depvar=\"accuracy\",\n",
+    "    subject=\"participant\",\n",
+    "    within=[\"type\", \"direction\"]\n",
+    ").fit()\n",
+    "\n",
+    "#print(\"\\nAccuracy 2x2:\")\n",
+    "#print(acc_results2way)\n",
+    "\n",
+    "#in-line stat \n",
+    "acc2_type = acc_results2way.anova_table.loc[\"type\"]\n",
+    "acc2_dir = acc_results2way.anova_table.loc[\"direction\"]\n",
+    "acc2_int = acc_results2way.anova_table.loc[\"type:direction\"]\n",
+    "\n",
+    "acc2_type_p = acc2_type[\"Pr > F\"]\n",
+    "acc2_dir_p = acc2_dir[\"Pr > F\"]\n",
+    "acc2_int_p = acc2_int[\"Pr > F\"]\n",
+    "\n",
+    "acc2_type_p_txt = \"< .001\" if acc2_type_p < .001 else f\"= {acc2_type_p:.3f}\".replace(\"0.\", \".\")\n",
+    "acc2_dir_p_txt = \"< .001\" if acc2_dir_p < .001 else f\"= {acc2_dir_p:.3f}\".replace(\"0.\", \".\")\n",
+    "acc2_int_p_txt = \"< .001\" if acc2_int_p < .001 else f\"= {acc2_int_p:.3f}\".replace(\"0.\", \".\")\n",
+    "\n",
+    "acc2_cong_stat = (\n",
+    "    f\"F({int(acc2_type['Num DF'])}, {int(acc2_type['Den DF'])}) = \"\n",
+    "    f\"{acc2_type['F Value']:.2f}, p {acc2_type_p_txt}\"\n",
+    ")\n",
+    "\n",
+    "acc2_dir_stat = (\n",
+    "    f\"F({int(acc2_dir['Num DF'])}, {int(acc2_dir['Den DF'])}) = \"\n",
+    "    f\"{acc2_dir['F Value']:.2f}, p {acc2_dir_p_txt}\"\n",
+    ")\n",
+    "\n",
+    "acc2_int_stat = (\n",
+    "    f\"F({int(acc2_int['Num DF'])}, {int(acc2_int['Den DF'])}) = \"\n",
+    "    f\"{acc2_int['F Value']:.2f}, p {acc2_int_p_txt}\"\n",
+    ")"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "2a33c01f",
+   "metadata": {
+    "user_expressions": [
+     {
+      "expression": "rt1_stat",
+      "result": {
+       "data": {
+        "text/plain": "'F(1, 15) = 56.70, p < .001'"
+       },
+       "metadata": {},
+       "status": "ok"
+      }
+     },
+     {
+      "expression": "rt2_cong_stat",
+      "result": {
+       "data": {
+        "text/plain": "'F(1, 13) = 42.68, p < .001'"
+       },
+       "metadata": {},
+       "status": "ok"
+      }
+     },
+     {
+      "expression": "rt2_dir_stat",
+      "result": {
+       "data": {
+        "text/plain": "'F(1, 13) = 1.10, p = .314'"
+       },
+       "metadata": {},
+       "status": "ok"
+      }
+     },
+     {
+      "expression": "rt2_int_stat",
+      "result": {
+       "data": {
+        "text/plain": "'F(1, 13) = 0.60, p = .451'"
+       },
+       "metadata": {},
+       "status": "ok"
+      }
+     }
+    ]
+   },
+   "source": [
+    "Reaction time and accuracy were first analyzed as a function of congruency alone. A second analysis was completed for these variables as a function of both congruency and direction. \n",
+    "\n",
+    "## Reaction Time \n",
+    "\n",
+    "Reaction times were longer in incongruent trials (*M* = 571.28 ms) than in congruent trials (*M* = 477.41 ms) across both directions. A one-way repeated-measures ANOVA revealed a significant main effect of congruency on reaction time (`{python} rt1_stat`), with longer reaction times in incongruent trials. A 2 x 2 repeated measures ANOVA revealed a significant main effect of congruency on reaction time (`{python} rt2_cong_stat`). There was no significant main effect of direction (`{python} rt2_dir_stat`) and no significant interaction between congruency and direction (`{python} rt2_int_stat`). The results for the reaction time of congruent trials compared to the incongruent trials are depicted in @fig-rt."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "id": "fig-rt",
+   "metadata": {
+    "fig-height": 5,
+    "fig-width": 5,
+    "message": false
+   },
+   "outputs": [
+    {
+     "data": {
+      "application/pdf": "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ZWlnaHQgMAovWEhlaWdodCAwIC9JdGFsaWNBbmdsZSAwIC9TdGVtViAwIC9NYXhXaWR0aCAxMzQyID4+CmVuZG9iagoxMyAwIG9iagpbIDYwMCA2MDAgNjAwIDYwMCA2MDAgNjAwIDYwMCA2MDAgNjAwIDYwMCA2MDAgNjAwIDYwMCA2MDAgNjAwIDYwMCA2MDAgNjAwCjYwMCA2MDAgNjAwIDYwMCA2MDAgNjAwIDYwMCA2MDAgNjAwIDYwMCA2MDAgNjAwIDYwMCA2MDAgMzE4IDQwMSA0NjAgODM4IDYzNgo5NTAgNzgwIDI3NSAzOTAgMzkwIDUwMCA4MzggMzE4IDM2MSAzMTggMzM3IDYzNiA2MzYgNjM2IDYzNiA2MzYgNjM2IDYzNiA2MzYKNjM2IDYzNiAzMzcgMzM3IDgzOCA4MzggODM4IDUzMSAxMDAwIDY4NCA2ODYgNjk4IDc3MCA2MzIgNTc1IDc3NSA3NTIgMjk1CjI5NSA2NTYgNTU3IDg2MyA3NDggNzg3IDYwMyA3ODcgNjk1IDYzNSA2MTEgNzMyIDY4NCA5ODkgNjg1IDYxMSA2ODUgMzkwIDMzNwozOTAgODM4IDUwMCA1MDAgNjEzIDYzNSA1NTAgNjM1IDYxNSAzNTIgNjM1IDYzNCAyNzggMjc4IDU3OSAyNzggOTc0IDYzNCA2MTIKNjM1IDYzNSA0MTEgNTIxIDM5MiA2MzQgNTkyIDgxOCA1OTIgNTkyIDUyNSA2MzYgMzM3IDYzNiA4MzggNjAwIDYzNiA2MDAgMzE4CjM1MiA1MTggMTAwMCA1MDAgNTAwIDUwMCAxMzQyIDYzNSA0MDAgMTA3MCA2MDAgNjg1IDYwMCA2MDAgMzE4IDMxOCA1MTggNTE4CjU5MCA1MDAgMTAwMCA1MDAgMTAwMCA1MjEgNDAwIDEwMjMgNjAwIDUyNSA2MTEgMzE4IDQwMSA2MzYgNjM2IDYzNiA2MzYgMzM3CjUwMCA1MDAgMTAwMCA0NzEgNjEyIDgzOCAzNjEgMTAwMCA1MDAgNTAwIDgzOCA0MDEgNDAxIDUwMCA2MzYgNjM2IDMxOCA1MDAKNDAxIDQ3MSA2MTIgOTY5IDk2OSA5NjkgNTMxIDY4NCA2ODQgNjg0IDY4NCA2ODQgNjg0IDk3NCA2OTggNjMyIDYzMiA2MzIgNjMyCjI5NSAyOTUgMjk1IDI5NSA3NzUgNzQ4IDc4NyA3ODcgNzg3IDc4NyA3ODcgODM4IDc4NyA3MzIgNzMyIDczMiA3MzIgNjExIDYwNQo2MzAgNjEzIDYxMyA2MTMgNjEzIDYxMyA2MTMgOTgyIDU1MCA2MTUgNjE1IDYxNSA2MTUgMjc4IDI3OCAyNzggMjc4IDYxMiA2MzQKNjEyIDYxMiA2MTIgNjEyIDYxMiA4MzggNjEyIDYzNCA2MzQgNjM0IDYzNCA1OTIgNjM1IDU5MiBdCmVuZG9iagoxNiAwIG9iago8PCAvQyAxNyAwIFIgL0QgMTggMCBSIC9JIDE5IDAgUiAvTCAyMCAwIFIgL1IgMjEgMCBSIC9UIDIyIDAgUiAvYSAyMyAwIFIKL2IgMjQgMCBSIC9jIDI1IDAgUiAvZCAyNiAwIFIgL2UgMjcgMCBSIC9mIDI4IDAgUiAvZml2ZSAyOSAwIFIgL2ZvdXIgMzAgMCBSCi9nIDMxIDAgUiAvaCAzMiAwIFIgL2kgMzMgMCBSIC9tIDM0IDAgUiAvbiAzNSAwIFIgL28gMzYgMCBSIC9vbmUgMzcgMCBSCi9wYXJlbmxlZnQgMzggMCBSIC9wYXJlbnJpZ2h0IDM5IDAgUiAvciA0MCAwIFIgL3MgNDEgMCBSIC9zaXggNDIgMCBSCi9zcGFjZSA0MyAwIFIgL3QgNDQgMCBSIC90aHJlZSA0NSAwIFIgL3R3byA0NiAwIFIgL3UgNDcgMCBSIC95IDQ4IDAgUgovemVybyA0OSAwIFIgPj4KZW5kb2JqCjMgMCBvYmoKPDwgL0YxIDE1IDAgUiA+PgplbmRvYmoKNCAwIG9iago8PCAvQTEgPDwgL1R5cGUgL0V4dEdTdGF0ZSAvQ0EgMCAvY2EgMSA+PgovQTIgPDwgL1R5cGUgL0V4dEdTdGF0ZSAvQ0EgMSAvY2EgMSA+PgovQTMgPDwgL1R5cGUgL0V4dEdTdGF0ZSAvQ0EgMC44IC9jYSAwLjggPj4gPj4KZW5kb2JqCjUgMCBvYmoKPDwgPj4KZW5kb2JqCjYgMCBvYmoKPDwgPj4KZW5kb2JqCjcgMCBvYmoKPDwgPj4KZW5kb2JqCjIgMCBvYmoKPDwgL1R5cGUgL1BhZ2VzIC9LaWRzIFsgMTEgMCBSIF0gL0NvdW50IDEgPj4KZW5kb2JqCjUwIDAgb2JqCjw8IC9DcmVhdG9yIChNYXRwbG90bGliIHYzLjEwLjgsIGh0dHBzOi8vbWF0cGxvdGxpYi5vcmcpCi9Qcm9kdWNlciAoTWF0cGxvdGxpYiBwZGYgYmFja2VuZCB2My4xMC44KQovQ3JlYXRpb25EYXRlIChEOjIwMjYwNDIyMjEzOTMxLTA0JzAwJykgPj4KZW5kb2JqCnhyZWYKMCA1MQowMDAwMDAwMDAwIDY1NTM1IGYgCjAwMDAwMDAwMTYgMDAwMDAgbiAKMDAwMDAxMjU1MCAwMDAwMCBuIAowMDAwMDEyMzEzIDAwMDAwIG4gCjAwMDAwMTIzNDUgMDAwMDAgbiAKMDAwMDAxMjQ4NyAwMDAwMCBuIAowMDAwMDEyNTA4IDAwMDAwIG4gCjAwMDAwMTI1MjkgMDAwMDAgbiAKMDAwMDAwMDA2NSAwMDAwMCBuIAowMDAwMDAwMzQyIDAwMDAwIG4gCjAwMDAwMDE2MzIgMDAwMDAgbiAKMDAwMDAwMDIwOCAwMDAwMCBuIAowMDAwMDAxNjExIDAwMDAwIG4gCjAwMDAwMTA4NjggMDAwMDAgbiAKMDAwMDAxMDY2MSAwMDAwMCBuIAowMDAwMDEwMTc2IDAwMDAwIG4gCjAwMDAwMTE5MjEgMDAwMDAgbiAKMDAwMDAwMTY1MiAwMDAwMCBuIAowMDAwMDAxOTU2IDAwMDAwIG4gCjAwMDAwMDIxOTAgMDAwMDAgbiAKMDAwMDAwMjMxMyAwMDAwMCBuIAowMDAwMDAyNDQ4IDAwMDAwIG4gCjAwMDAwMDI3NDkgMDAwMDAgbiAKMDAwMDAwMjg5MSAwMDAwMCBuIAowMDAwMDAzMjYyIDAwMDAwIG4gCjAwMDAwMDM1NzIgMDAwMDAgbiAKMDAwMDAwMzg3MCAwMDAwMCBuIAowMDAwMDA0MTY5IDAwMDAwIG4gCjAwMDAwMDQ0ODYgMDAwMDAgbiAKMDAwMDAwNDY5MSAwMDAwMCBuIAowMDAwMDA1MDExIDAwMDAwIG4gCjAwMDAwMDUxNzYgMDAwMDAgbiAKMDAwMDAwNTU4NCAwMDAwMCBuIAowMDAwMDA1ODIyIDAwMDAwIG4gCjAwMDAwMDU5NjggMDAwMDAgbiAKMDAwMDAwNjI5MyAwMDAwMCBuIAowMDAwMDA2NTMwIDAwMDAwIG4gCjAwMDAwMDY4MTQgMDAwMDAgbiAKMDAwMDAwNjk2OSAwMDAwMCBuIAowMDAwMDA3MTg4IDAwMDAwIG4gCjAwMDAwMDc0MDcgMDAwMDAgbiAKMDAwMDAwNzY0MCAwMDAwMCBuIAowMDAwMDA4MDM1IDAwMDAwIG4gCjAwMDAwMDg0MTkgMDAwMDAgbiAKMDAwMDAwODUwOSAwMDAwMCBuIAowMDAwMDA4NzExIDAwMDAwIG4gCjAwMDAwMDkxMTQgMDAwMDAgbiAKMDAwMDAwOTQzNCAwMDAwMCBuIAowMDAwMDA5Njc5IDAwMDAwIG4gCjAwMDAwMDk4OTMgMDAwMDAgbiAKMDAwMDAxMjYxMCAwMDAwMCBuIAp0cmFpbGVyCjw8IC9TaXplIDUxIC9Sb290IDEgMCBSIC9JbmZvIDUwIDAgUiA+PgpzdGFydHhyZWYKMTI3NjkKJSVFT0YK",
+      "text/plain": [
+       "<Figure size 1650x1050 with 1 Axes>"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    }
+   ],
+   "source": [
+    "#| label: fig-rt\n",
+    "#| fig-cap: Mean reaction time (ms) by congruency and direction. Error bars represent ±1 SEM.\n",
+    "#| fig-align: center\n",
+    "#| out-width: 70%\n",
+    "#| fig-pos: H\n",
+    "#| echo: false\n",
+    "#| warning: false\n",
+    "\n",
+    "import pandas as pd\n",
+    "import matplotlib.pyplot as plt\n",
+    "import numpy as np\n",
+    "\n",
+    "data = pd.read_csv(\"../flankerdata/combined.csv\")\n",
+    "data = data[data[\"block\"] == \"main\"]\n",
+    "\n",
+    "rt = data[data[\"accuracy\"] == 1].copy()\n",
+    "rt[\"rt\"] = pd.to_numeric(rt[\"rt\"], errors=\"coerce\")\n",
+    "rt = rt.dropna(subset=[\"rt\"])\n",
+    "\n",
+    "rt_subj = rt.groupby([\"participant\", \"type\", \"direction\"], as_index=False)[\"rt\"].mean()\n",
+    "rt_summary = rt_subj.groupby([\"type\", \"direction\"])[\"rt\"].agg([\"mean\", \"sem\"]).reset_index()\n",
+    "\n",
+    "congruency = (\"Congruent\", \"Incongruent\")\n",
+    "\n",
+    "rt_means = {\n",
+    "    \"Left\": (\n",
+    "        rt_summary[(rt_summary[\"type\"] == \"congruent\") & (rt_summary[\"direction\"] == \"left\")][\"mean\"].values[0],\n",
+    "        rt_summary[(rt_summary[\"type\"] == \"incongruent\") & (rt_summary[\"direction\"] == \"left\")][\"mean\"].values[0],\n",
+    "    ),\n",
+    "    \"Right\": (\n",
+    "        rt_summary[(rt_summary[\"type\"] == \"congruent\") & (rt_summary[\"direction\"] == \"right\")][\"mean\"].values[0],\n",
+    "        rt_summary[(rt_summary[\"type\"] == \"incongruent\") & (rt_summary[\"direction\"] == \"right\")][\"mean\"].values[0],\n",
+    "    ),\n",
+    "}\n",
+    "\n",
+    "rt_sems = {\n",
+    "    \"Left\": (\n",
+    "        rt_summary[(rt_summary[\"type\"] == \"congruent\") & (rt_summary[\"direction\"] == \"left\")][\"sem\"].values[0],\n",
+    "        rt_summary[(rt_summary[\"type\"] == \"incongruent\") & (rt_summary[\"direction\"] == \"left\")][\"sem\"].values[0],\n",
+    "    ),\n",
+    "    \"Right\": (\n",
+    "        rt_summary[(rt_summary[\"type\"] == \"congruent\") & (rt_summary[\"direction\"] == \"right\")][\"sem\"].values[0],\n",
+    "        rt_summary[(rt_summary[\"type\"] == \"incongruent\") & (rt_summary[\"direction\"] == \"right\")][\"sem\"].values[0],\n",
+    "    ),\n",
+    "}\n",
+    "\n",
+    "x = np.arange(len(congruency))\n",
+    "width = 0.25\n",
+    "multiplier = 0\n",
+    "\n",
+    "fig, ax = plt.subplots(layout=\"constrained\")\n",
+    "\n",
+    "for direction, measurement in rt_means.items():\n",
+    "    offset = width * multiplier\n",
+    "    errors = rt_sems[direction]\n",
+    "    ax.bar(x + offset, measurement, width, yerr=errors, capsize=5, label=direction)\n",
+    "    multiplier += 1\n",
+    "\n",
+    "ax.set_ylabel(\"Reaction Time (ms)\")\n",
+    "ax.set_title(\"Reaction Time by Congruency and Direction\")\n",
+    "ax.set_xticks(x + width / 2, congruency)\n",
+    "ax.legend()\n",
+    "\n",
+    "plt.show()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "e22b1dff",
+   "metadata": {
+    "user_expressions": [
+     {
+      "expression": "acc1_stat",
+      "result": {
+       "data": {
+        "text/plain": "'F(1, 15) = 10.70, p = .005'"
+       },
+       "metadata": {},
+       "status": "ok"
+      }
+     },
+     {
+      "expression": "acc2_cong_stat",
+      "result": {
+       "data": {
+        "text/plain": "'F(1, 14) = 8.60, p = .011'"
+       },
+       "metadata": {},
+       "status": "ok"
+      }
+     },
+     {
+      "expression": "acc2_dir_stat",
+      "result": {
+       "data": {
+        "text/plain": "'F(1, 14) = 0.52, p = .484'"
+       },
+       "metadata": {},
+       "status": "ok"
+      }
+     },
+     {
+      "expression": "acc2_int_stat",
+      "result": {
+       "data": {
+        "text/plain": "'F(1, 14) = 0.19, p = .673'"
+       },
+       "metadata": {},
+       "status": "ok"
+      }
+     }
+    ]
+   },
+   "source": [
+    "## Accuracy \n",
+    "\n",
+    "Accuracy was higher for congruent trials (M = .97) than for incongruent trials (M = .81) across both directions. A one-way repeated measures ANOVA revealed a significant main effect of congruency on accuracy (`{python} acc1_stat`), with higher accuracy on congruent trials. A 2 x 2 repeated measures ANOVA revealed a significant main effect of congruency on accuracy (`{python} acc2_cong_stat`). There was no significant main effect of direction (`{python} acc2_dir_stat`) and no significant interaction between congruency and direction (`{python} acc2_int_stat`). The results for the reaction time of congruent trials compared to the incongruent trials are depicted in @fig-acc."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 3,
+   "id": "fig-acc",
+   "metadata": {
+    "fig-height": 5,
+    "fig-width": 5,
+    "message": false
+   },
+   "outputs": [
+    {
+     "data": {
+      "application/pdf": "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LTEwMjEgLTQ2MyAxNzk0IDEyMzMgXSAvRm9udE1hdHJpeCBbIDAuMDAxIDAgMCAwLjAwMSAwIDAgXQovQ2hhclByb2NzIDE2IDAgUgovRW5jb2RpbmcgPDwgL1R5cGUgL0VuY29kaW5nCi9EaWZmZXJlbmNlcyBbIDMyIC9zcGFjZSA0NiAvcGVyaW9kIDQ4IC96ZXJvIC9vbmUgL3R3byA1MiAvZm91ciA1NCAvc2l4IDU2IC9laWdodCA2NSAvQQo2NyAvQyAvRCA3MyAvSSA3NiAvTCA4MiAvUiA5NyAvYSAvYiAvYyAvZCAvZSAvZiAvZyAvaCAvaSAxMTAgL24gL28gMTE0IC9yCjExNiAvdCAvdSAxMjEgL3kgXQo+PgovV2lkdGhzIDEzIDAgUiA+PgplbmRvYmoKMTQgMCBvYmoKPDwgL1R5cGUgL0ZvbnREZXNjcmlwdG9yIC9Gb250TmFtZSAvQk1RUURWK0RlamFWdVNhbnMgL0ZsYWdzIDMyCi9Gb250QkJveCBbIC0xMDIxIC00NjMgMTc5NCAxMjMzIF0gL0FzY2VudCA5MjkgL0Rlc2NlbnQgLTIzNiAvQ2FwSGVpZ2h0IDAKL1hIZWlnaHQgMCAvSXRhbGljQW5nbGUgMCAvU3RlbVYgMCAvTWF4V2lkdGggMTM0MiA+PgplbmRvYmoKMTMgMCBvYmoKWyA2MDAgNjAwIDYwMCA2MDAgNjAwIDYwMCA2MDAgNjAwIDYwMCA2MDAgNjAwIDYwMCA2MDAgNjAwIDYwMCA2MDAgNjAwIDYwMAo2MDAgNjAwIDYwMCA2MDAgNjAwIDYwMCA2MDAgNjAwIDYwMCA2MDAgNjAwIDYwMCA2MDAgNjAwIDMxOCA0MDEgNDYwIDgzOCA2MzYKOTUwIDc4MCAyNzUgMzkwIDM5MCA1MDAgODM4IDMxOCAzNjEgMzE4IDMzNyA2MzYgNjM2IDYzNiA2MzYgNjM2IDYzNiA2MzYgNjM2CjYzNiA2MzYgMzM3IDMzNyA4MzggODM4IDgzOCA1MzEgMTAwMCA2ODQgNjg2IDY5OCA3NzAgNjMyIDU3NSA3NzUgNzUyIDI5NQoyOTUgNjU2IDU1NyA4NjMgNzQ4IDc4NyA2MDMgNzg3IDY5NSA2MzUgNjExIDczMiA2ODQgOTg5IDY4NSA2MTEgNjg1IDM5MCAzMzcKMzkwIDgzOCA1MDAgNTAwIDYxMyA2MzUgNTUwIDYzNSA2MTUgMzUyIDYzNSA2MzQgMjc4IDI3OCA1NzkgMjc4IDk3NCA2MzQgNjEyCjYzNSA2MzUgNDExIDUyMSAzOTIgNjM0IDU5MiA4MTggNTkyIDU5MiA1MjUgNjM2IDMzNyA2MzYgODM4IDYwMCA2MzYgNjAwIDMxOAozNTIgNTE4IDEwMDAgNTAwIDUwMCA1MDAgMTM0MiA2MzUgNDAwIDEwNzAgNjAwIDY4NSA2MDAgNjAwIDMxOCAzMTggNTE4IDUxOAo1OTAgNTAwIDEwMDAgNTAwIDEwMDAgNTIxIDQwMCAxMDIzIDYwMCA1MjUgNjExIDMxOCA0MDEgNjM2IDYzNiA2MzYgNjM2IDMzNwo1MDAgNTAwIDEwMDAgNDcxIDYxMiA4MzggMzYxIDEwMDAgNTAwIDUwMCA4MzggNDAxIDQwMSA1MDAgNjM2IDYzNiAzMTggNTAwCjQwMSA0NzEgNjEyIDk2OSA5NjkgOTY5IDUzMSA2ODQgNjg0IDY4NCA2ODQgNjg0IDY4NCA5NzQgNjk4IDYzMiA2MzIgNjMyIDYzMgoyOTUgMjk1IDI5NSAyOTUgNzc1IDc0OCA3ODcgNzg3IDc4NyA3ODcgNzg3IDgzOCA3ODcgNzMyIDczMiA3MzIgNzMyIDYxMSA2MDUKNjMwIDYxMyA2MTMgNjEzIDYxMyA2MTMgNjEzIDk4MiA1NTAgNjE1IDYxNSA2MTUgNjE1IDI3OCAyNzggMjc4IDI3OCA2MTIgNjM0CjYxMiA2MTIgNjEyIDYxMiA2MTIgODM4IDYxMiA2MzQgNjM0IDYzNCA2MzQgNTkyIDYzNSA1OTIgXQplbmRvYmoKMTYgMCBvYmoKPDwgL0EgMTcgMCBSIC9DIDE4IDAgUiAvRCAxOSAwIFIgL0kgMjAgMCBSIC9MIDIxIDAgUiAvUiAyMiAwIFIgL2EgMjMgMCBSCi9iIDI0IDAgUiAvYyAyNSAwIFIgL2QgMjYgMCBSIC9lIDI3IDAgUiAvZWlnaHQgMjggMCBSIC9mIDI5IDAgUgovZm91ciAzMCAwIFIgL2cgMzEgMCBSIC9oIDMyIDAgUiAvaSAzMyAwIFIgL24gMzQgMCBSIC9vIDM1IDAgUiAvb25lIDM2IDAgUgovcGVyaW9kIDM3IDAgUiAvciAzOCAwIFIgL3NpeCAzOSAwIFIgL3NwYWNlIDQwIDAgUiAvdCA0MSAwIFIgL3R3byA0MiAwIFIKL3UgNDMgMCBSIC95IDQ0IDAgUiAvemVybyA0NSAwIFIgPj4KZW5kb2JqCjMgMCBvYmoKPDwgL0YxIDE1IDAgUiA+PgplbmRvYmoKNCAwIG9iago8PCAvQTEgPDwgL1R5cGUgL0V4dEdTdGF0ZSAvQ0EgMCAvY2EgMSA+PgovQTIgPDwgL1R5cGUgL0V4dEdTdGF0ZSAvQ0EgMSAvY2EgMSA+PgovQTMgPDwgL1R5cGUgL0V4dEdTdGF0ZSAvQ0EgMC44IC9jYSAwLjggPj4gPj4KZW5kb2JqCjUgMCBvYmoKPDwgPj4KZW5kb2JqCjYgMCBvYmoKPDwgPj4KZW5kb2JqCjcgMCBvYmoKPDwgPj4KZW5kb2JqCjIgMCBvYmoKPDwgL1R5cGUgL1BhZ2VzIC9LaWRzIFsgMTEgMCBSIF0gL0NvdW50IDEgPj4KZW5kb2JqCjQ2IDAgb2JqCjw8IC9DcmVhdG9yIChNYXRwbG90bGliIHYzLjEwLjgsIGh0dHBzOi8vbWF0cGxvdGxpYi5vcmcpCi9Qcm9kdWNlciAoTWF0cGxvdGxpYiBwZGYgYmFja2VuZCB2My4xMC44KQovQ3JlYXRpb25EYXRlIChEOjIwMjYwNDIyMjEzOTMxLTA0JzAwJykgPj4KZW5kb2JqCnhyZWYKMCA0NwowMDAwMDAwMDAwIDY1NTM1IGYgCjAwMDAwMDAwMTYgMDAwMDAgbiAKMDAwMDAxMTE0OSAwMDAwMCBuIAowMDAwMDEwOTEyIDAwMDAwIG4gCjAwMDAwMTA5NDQgMDAwMDAgbiAKMDAwMDAxMTA4NiAwMDAwMCBuIAowMDAwMDExMTA3IDAwMDAwIG4gCjAwMDAwMTExMjggMDAwMDAgbiAKMDAwMDAwMDA2NSAwMDAwMCBuIAowMDAwMDAwMzQyIDAwMDAwIG4gCjAwMDAwMDE1NzggMDAwMDAgbiAKMDAwMDAwMDIwOCAwMDAwMCBuIAowMDAwMDAxNTU3IDAwMDAwIG4gCjAwMDAwMDk1MjIgMDAwMDAgbiAKMDAwMDAwOTMxNSAwMDAwMCBuIAowMDAwMDA4ODQ0IDAwMDAwIG4gCjAwMDAwMTA1NzUgMDAwMDAgbiAKMDAwMDAwMTU5OCAwMDAwMCBuIAowMDAwMDAxNzYyIDAwMDAwIG4gCjAwMDAwMDIwNjYgMDAwMDAgbiAKMDAwMDAwMjMwMCAwMDAwMCBuIAowMDAwMDAyNDIzIDAwMDAwIG4gCjAwMDAwMDI1NTggMDAwMDAgbiAKMDAwMDAwMjg1OSAwMDAwMCBuIAowMDAwMDAzMjMwIDAwMDAwIG4gCjAwMDAwMDM1NDAgMDAwMDAgbiAKMDAwMDAwMzgzOCAwMDAwMCBuIAowMDAwMDA0MTM3IDAwMDAwIG4gCjAwMDAwMDQ0NTQgMDAwMDAgbiAKMDAwMDAwNDkxMSAwMDAwMCBuIAowMDAwMDA1MTE2IDAwMDAwIG4gCjAwMDAwMDUyODEgMDAwMDAgbiAKMDAwMDAwNTY4OSAwMDAwMCBuIAowMDAwMDA1OTI3IDAwMDAwIG4gCjAwMDAwMDYwNzMgMDAwMDAgbiAKMDAwMDAwNjMxMCAwMDAwMCBuIAowMDAwMDA2NTk0IDAwMDAwIG4gCjAwMDAwMDY3NDkgMDAwMDAgbiAKMDAwMDAwNjg3MyAwMDAwMCBuIAowMDAwMDA3MTA2IDAwMDAwIG4gCjAwMDAwMDc0OTAgMDAwMDAgbiAKMDAwMDAwNzU4MCAwMDAwMCBuIAowMDAwMDA3NzgyIDAwMDAwIG4gCjAwMDAwMDgxMDIgMDAwMDAgbiAKMDAwMDAwODM0NyAwMDAwMCBuIAowMDAwMDA4NTYxIDAwMDAwIG4gCjAwMDAwMTEyMDkgMDAwMDAgbiAKdHJhaWxlcgo8PCAvU2l6ZSA0NyAvUm9vdCAxIDAgUiAvSW5mbyA0NiAwIFIgPj4Kc3RhcnR4cmVmCjExMzY4CiUlRU9GCg==",
+      "text/plain": [
+       "<Figure size 1650x1050 with 1 Axes>"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    }
+   ],
+   "source": [
+    "#| label: fig-acc\n",
+    "#| fig-cap: Mean accuracy by congruency and direction. Error bars represent ±1 SEM.\n",
+    "#| fig-align: center\n",
+    "#| out-width: 70%\n",
+    "#| fig-pos: H\n",
+    "#| echo: false\n",
+    "#| warning: false\n",
+    "\n",
+    "import pandas as pd\n",
+    "import matplotlib.pyplot as plt\n",
+    "import numpy as np\n",
+    "\n",
+    "data = pd.read_csv(\"../flankerdata/combined.csv\")\n",
+    "data = data[data[\"block\"] == \"main\"]\n",
+    "\n",
+    "acc_subj = data.groupby([\"participant\", \"type\", \"direction\"], as_index=False)[\"accuracy\"].mean()\n",
+    "acc_summary = acc_subj.groupby([\"type\", \"direction\"])[\"accuracy\"].agg([\"mean\", \"sem\"]).reset_index()\n",
+    "\n",
+    "congruency = (\"Congruent\", \"Incongruent\")\n",
+    "\n",
+    "acc_means = {\n",
+    "    \"Left\": (\n",
+    "        acc_summary[(acc_summary[\"type\"] == \"congruent\") & (acc_summary[\"direction\"] == \"left\")][\"mean\"].values[0],\n",
+    "        acc_summary[(acc_summary[\"type\"] == \"incongruent\") & (acc_summary[\"direction\"] == \"left\")][\"mean\"].values[0],\n",
+    "    ),\n",
+    "    \"Right\": (\n",
+    "        acc_summary[(acc_summary[\"type\"] == \"congruent\") & (acc_summary[\"direction\"] == \"right\")][\"mean\"].values[0],\n",
+    "        acc_summary[(acc_summary[\"type\"] == \"incongruent\") & (acc_summary[\"direction\"] == \"right\")][\"mean\"].values[0],\n",
+    "    ),\n",
+    "}\n",
+    "\n",
+    "acc_sems = {\n",
+    "    \"Left\": (\n",
+    "        acc_summary[(acc_summary[\"type\"] == \"congruent\") & (acc_summary[\"direction\"] == \"left\")][\"sem\"].values[0],\n",
+    "        acc_summary[(acc_summary[\"type\"] == \"incongruent\") & (acc_summary[\"direction\"] == \"left\")][\"sem\"].values[0],\n",
+    "    ),\n",
+    "    \"Right\": (\n",
+    "        acc_summary[(acc_summary[\"type\"] == \"congruent\") & (acc_summary[\"direction\"] == \"right\")][\"sem\"].values[0],\n",
+    "        acc_summary[(acc_summary[\"type\"] == \"incongruent\") & (acc_summary[\"direction\"] == \"right\")][\"sem\"].values[0],\n",
+    "    ),\n",
+    "}\n",
+    "\n",
+    "x = np.arange(len(congruency))\n",
+    "width = 0.25\n",
+    "multiplier = 0\n",
+    "\n",
+    "fig, ax = plt.subplots(layout=\"constrained\")\n",
+    "\n",
+    "for direction, measurement in acc_means.items():\n",
+    "    offset = width * multiplier\n",
+    "    errors = acc_sems[direction]\n",
+    "    ax.bar(x + offset, measurement, width, yerr=errors, capsize=5, label=direction)\n",
+    "    multiplier += 1\n",
+    "\n",
+    "ax.set_ylabel(\"Accuracy\")\n",
+    "ax.set_title(\"Accuracy by Congruency and Direction\")\n",
+    "ax.set_xticks(x + width / 2, congruency)\n",
+    "ax.legend()\n",
+    "ax.set_ylim(0, 1.05)\n",
+    "\n",
+    "plt.show()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "e8784fde",
+   "metadata": {
+    "user_expressions": [
+     {
+      "expression": "rt1_stat",
+      "result": {
+       "data": {
+        "text/plain": "'F(1, 15) = 56.70, p < .001'"
+       },
+       "metadata": {},
+       "status": "ok"
+      }
+     },
+     {
+      "expression": "acc1_stat",
+      "result": {
+       "data": {
+        "text/plain": "'F(1, 15) = 10.70, p = .005'"
+       },
+       "metadata": {},
+       "status": "ok"
+      }
+     },
+     {
+      "expression": "acc2_cong_stat",
+      "result": {
+       "data": {
+        "text/plain": "'F(1, 14) = 8.60, p = .011'"
+       },
+       "metadata": {},
+       "status": "ok"
+      }
+     },
+     {
+      "expression": "acc2_dir_stat",
+      "result": {
+       "data": {
+        "text/plain": "'F(1, 14) = 0.52, p = .484'"
+       },
+       "metadata": {},
+       "status": "ok"
+      }
+     },
+     {
+      "expression": "acc2_int_stat",
+      "result": {
+       "data": {
+        "text/plain": "'F(1, 14) = 0.19, p = .673'"
+       },
+       "metadata": {},
+       "status": "ok"
+      }
+     }
+    ]
+   },
+   "source": [
+    "# Discussion\n",
+    "Effect of Congruency on Performance\n",
+    "The present study examined the effect of stimulus congruency on response time and accuracy using a within-subjects flanker task design. Consistent with expectations, participants responded significantly slower and less accurately on incongruent trials compared to congruent trials. Reaction times increased from 477.41 ms in congruent trials to 571.28 ms in incongruent trials, and this difference was statistically significant, `{python} rt1_stat`. Importantly, the F value (F = 56.70) indicates a strong effect of congruency on response time, suggesting that a substantial proportion of variance in reaction time is explained by whether trials were congruent or incongruent. This reinforces that the manipulation of congruency was highly effective in producing interference. \n",
+    "\n",
+    "## Interpretation Within Flanker and Cognitive Control Research\n",
+    "These findings replicate the classic flanker effect first reported by @eriksen1974, who showed that incongruent trials produce slower responses due to response competition. In the current study, incongruent flankers likely activated competing motor responses, requiring participants to suppress irrelevant information and selectively attend to the target. This supports the idea that attentional selection is not fully efficient and that irrelevant stimuli are processed automatically, interfering with performance [@eriksen1974].\n",
+    "\n",
+    "Beyond replicating the original findings, the present results are also consistent with contemporary models of cognitive control. According to the conflict monitoring theory, the cognitive system continuously detects conflict between competing responses and recruits control processing to resolve it (Bovinick et al., 2001). Incongruent trials generate higher levels of conflict because flankers activate an opposing response, leading to increased processing time. Conflict is associated with activity in the anterior cingulate cortex (ACC), which plays a role in monitoring conflict and signaling the need for increased control [@botvinick2001]. The slower reaction times observed in this study are therefore consistent with increased cognitive effort required to resolve this conflict. \n",
+    "\n",
+    "The accuracy results further strengthen this interpretation. While participants performed well in congruent trials (M = 0.97), the accuracy dropped substantially in incongruent trials (M= 0.81), and this difference is statistically significant, `{python} acc1_stat`, confirming that incongruent trials not only slow responses but also significantly increase error rates. Although the effect size for accuracy is smaller than for reaction time, it still indicates a reliable impact on interference on performance. This dual cost, with both speed and accuracy, has been widely reported and is considered a hallmark of interference paradigms [@ridderinkhof2004]. This reduction in accuracy suggests that, in some cases, participants failed to fully inhibit response activated by the flankers, leading to incorrect responses. \n",
+    "\n",
+    "Importantly, the magnitude of the effect observed in this study is comparable to previous experimental findings. For instance, @fan2002 demonstrated that incongruent trials consistently produce slower responses in attention network paradigms, which reflected the efficiency of executive control mechanisms. Similarly, @gratton1992 showed that interference effects in flanker tasks are not static but can vary depending on previous trial history, a phenomenon known as the Gratton effect. Although sequential effects were not directly analyzed in the present study, the strong interference observed suggests that similar adaptive control processes may be occurring. \n",
+    "\n",
+    "## Two-way Analysis: Role of Direction\n",
+    "The inclusion of second analysis (two-way repeated measures ANOVA) further extends the interpretation of these findings. By incorporating direction (left vs. right) as a second independent variable, the design allows for the examination of spatial influences on attention. This approach is similar to combined flanker-Simon paradigms, where both stimulus identity and spatial location contribute to interference [@stoffels1988]. Spatial and identity-based conflicts can interact, suggesting that multiple cognitive systems contribute to response selection [@hommel1993]. Although the primary effect in the present study was driven by congruency, future analyses could explore whether direction interacts with congruency to produce additional interference effects.\n",
+    " \n",
+    "The two-way ANOVA results showed that the main effect of congruency on reaction time remained a significant main effect of congruency,`{python} acc2_cong_stat`, further supporting the impact of incongruency on performance accuracy. However, neither the main effect of direction, `{python} acc2_dir_stat`, nor the interaction between congruency and direction, `{python} acc2_int_stat`, reached significance. These findings indicate that accuracy differences are driven primarily by congruency and not by spatial response factors.\n",
+    "\n",
+    "Another important implication of the current findings relates to a broader understanding of selective attention. The results support the idea that attention operates as a limited-capacity system that must actively filter out irrelevant information. When distractors are highly similar or strongly associated with the response, they are more difficult to ignore, leading to increased interference. This aligns with evidence from electrophysiological studies showing that incongruent trials elicit larger event-related potentials associated with conflict processing [@clayson2011]. These neural findings complement behavioural results by demonstrating that conflict processing occurs rapidly and automatically. \n",
+    "\n",
+    "## Limitations and Future Implementations\n",
+    "The present study has several limitations that should be considered when interpreting the findings. First, the small sample size (N = 16) reduces statistical power and limits the generalizability of the results. In addition, the use of a restricted sample of University of Waterloo undergraduate students limits variability in demographic characteristics such as age and education level, making the findings less representative of the general population.\n",
+    "\n",
+    "A further limitation relates to the task design. For example, each participant completed only 20 experimental trials, which may reduce the reliability of both reaction time and accuracy measures. With such a small number of trials, individual variability and random fluctuations in performance are more likely to influence overall results. Additionally, although trials were randomly generated, this meant that they were not fully balanced across conditions. This may have resulted in unequal representation of congruent and incongruent trials, which would introduce variability and reduce the precision of comparisons between conditions.\n",
+    "\n",
+    "Future research should address these limitations by increasing sample size and recruiting more diverse participants to improve generalizability. Moreover, increasing the number of trials and ensuring a fully balanced design would help to enhance the reliability and validity of the findings. Future studies could also extend this work by examining individual differences in cognitive control across populations to provide deeper insight into how interference effects may vary across contexts.\n",
+    "\n",
+    "Lastly, across both one-way and two-way analyses in the present study, congruency consistently emerged as the only significant factor influencing performance, while direction and interaction effects were non-significant. This pattern helps to reinforce the interpretation that cognitive interference in the flanker task is primarily driven by response conflict rather than spatial processing.\n",
+    "\n",
+    "\n",
+    "\n",
+    "# Conclusion\n",
+    "Consistent with theories of selective attention and cognitive control, the results of the present study provide clear support for the flanker interference effect [@stoffels1988]. Specifically, participants showed both slower response times and lower accuracy on incongruent trials, indicating that flanker stimuli were automatically processed even when they were task-irrelevant. This suggests that participants were unable to fully suppress distracting information, highlighting the limits of cognitive control under conditions of response conflict.\n",
+    "\n",
+    "Also important to note is that the main effect of direction (left vs. right) was not significant, nor was the interaction between direction and congruency, indicating that distractor congruency was the primary driver of performance differences. This helps to strengthen the interpretation that the observed flanker effects are due to interference from competing stimuli rather than simple response biases.\n",
+    "\n",
+    "Limitations: The small sample size (N = 16) reduces statistical power and limits the generalizability of the findings. Additionally, the use of a restricted sample of University of Waterloo students limits variability in age and educational background, making the results less representative of the broader population. The study also included only 20 trials per participant, which may reduce the reliability and stability of both reaction time and accuracy measures. + randomized sequences\n",
+    "\n",
+    "Future Directions: Future research should address these limitations by increasing sample size, diversifying participant demographics, and including a greater number of trials to improve measurement reliability. In addition, exploring individual differences in cognitive control across populations could provide deeper insight into how interference effects vary across contexts.\n",
+    "\n",
+    "Overall, despite its limitations, this study successfully replicates a well-established cognitive effect and demonstrates the robustness of the flanker paradigm as a tool for studying attention and response conflict.\n",
+    "\n",
+    "# References {-}\n",
+    "::: {#refs}\n",
+    ":::\n"
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3 (ipykernel)",
+   "language": "python",
+   "name": "python3",
+   "path": "C:\\Users\\edaku\\OneDrive\\Documents\\my_project\\quarto-article\\.venv\\share\\jupyter\\kernels\\python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.14.2"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}

@@ -66,6 +66,7 @@
 
 
 \usepackage{longtable,booktabs,array}
+\newcounter{none} % for unnumbered tables
 \usepackage{calc} % for calculating minipage widths
 % Correct order of tables after \paragraph or \subparagraph
 \usepackage{etoolbox}
@@ -236,7 +237,86 @@ Control \sep Reaction Time \sep
 \end{frontmatter}
     
 
-\section{Intro}\label{intro}
+\section{Introduction}\label{introduction}
+
+Selective attention is a fundamental cognitive process that allows
+individuals to focus on relevant information while ignoring irrelevant
+or distracting stimuli. One of the most widely used paradigms for
+studying selective attention and cognitive control is the Eriksen
+flanker task, originally introduced by \citet{eriksen1974}.
+
+In the original version of the task, letter strings were used, where
+participants responded to a central target letter embedded within a row
+of distractor letters. Congruent trials consisted of flankers that were
+associated with the same response as the target (e.g., HHHKHHH), whereas
+incongruent trials contained flankers associated with a different
+response. \citet{eriksen1974} demonstrated that reaction times were
+significantly slower and error rates were higher in congruent trials;
+this phenomenon is known as the flanker effect. This highlights the
+difficulty of suppressing irrelevant information and provides insight
+into the mechanisms of attentional control.
+
+However, in this task, instead of letters, arrows were used, and
+participants were required to respond to a target stimulus while
+ignoring adjacent ``flanker'' stimuli, which can either support the same
+response (congruent trials) or interfere with it (incongruent trials).
+Congruent trials consisted of stimuli where all arrows pointed in the
+same direction, facilitating response selection. In contrast,
+incongruent trials included arrows pointing in opposite directions,
+creating response conflict and requiring additional cognitive control to
+suppress irrelevant information. Reaction time was used as the primary
+dependent variable as it provides a sensitive measure of processing
+difficulty and interference effects. Research consistently demonstrates
+that incongruent trials produce slower reaction times and higher error
+rates, reflecting the cognitive cost of resolving response conflict
+\citep{eriksen1974}.
+
+In addition to its theoretical significance, the flanker task is widely
+used as a methodological tool for studying attention and executive
+function across different populations and contexts. Variants of the
+task, such as the Attention Network test, extend its use by examining
+multiple components of attention, including alerting, orienting, and
+executive control \citep{fan2002}. The task has also been employed in
+neuropsychological and developmental research to investigate differences
+in cognitive control across age groups and clinical populations. These
+applications highlight the flexibility of the flanker paradigm as both a
+research and teaching tool.
+
+According to conflict monitoring theory, interference effects arise
+because incongruent stimuli activate competing responses, which must
+then be resolved through cognitive control processes
+\citep{botvinick2001}. Neuropsychological research has identified
+anterior cingulate cortex (ACC) as a key structure involved in detecting
+this conflict and signaling the need for increased control.
+Additionally, sequential effects such as the Gratton effect demonstrate
+that cognitive control is adaptive, with reduced interference following
+high-conflict trials, suggesting that the brain can adapt and adjust
+based on prior experience \citep{gratton1992}.
+
+The flanker task therefore provides a tool for examining how the brain
+manages competing information and maintains goal-directed behaviour. It
+allows researchers to analyze both speed and accuracy costs associated
+with interference and to investigate how different factors contribute to
+cognitive control. Despite variations in task design, a consistent
+finding across studies is that incongruent trials lead to slower
+reaction times and decreased accuracy compared to congruent trials.
+
+Based on previous findings, we hypothesized that reaction times would be
+significantly longer in incongruent trials compared to congruent trials.
+This prediction reflects the increased cognitive demand required to
+resolve conflicting information and select the correct response. The
+null hypothesis states that there would be no difference in reaction
+time between conditions. By testing these hypotheses using a
+repeated-measure ANOVA, the study aims to quantify the effect of
+congruency on performance and determine whether the observed differences
+are statistically significant
+
+Overall, this study uses the flanker task as a simple but effective
+framework to demonstrate both a classical cognitive effect and the
+principles of reproducible scientific reporting. The present study
+builds on this body of research by examining the effect of congruency on
+response time and accuracy in a within-subjects design. In addition to a
+standard comparison between congruent and incongruent results.
 
 \section{Methods}\label{methods}
 
@@ -372,6 +452,146 @@ bars represent ±1 SEM.}
 
 \section{Discussion}\label{discussion}
 
+Effect of Congruency on Performance The present study examined the
+effect of stimulus congruency on response time and accuracy using a
+within-subjects flanker task design. Consistent with expectations,
+participants responded significantly slower and less accurately on
+incongruent trials compared to congruent trials. Reaction times
+increased from 477.41 ms in congruent trials to 571.28 ms in incongruent
+trials, and this difference was statistically significant, F(1, 15) =
+56.70, p \textless{} .001. Importantly, the F value (F = 56.70)
+indicates a strong effect of congruency on response time, suggesting
+that a substantial proportion of variance in reaction time is explained
+by whether trials were congruent or incongruent. This reinforces that
+the manipulation of congruency was highly effective in producing
+interference.
+
+\subsection{Interpretation Within Flanker and Cognitive Control
+Research}\label{interpretation-within-flanker-and-cognitive-control-research}
+
+These findings replicate the classic flanker effect first reported by
+\citet{eriksen1974}, who showed that incongruent trials produce slower
+responses due to response competition. In the current study, incongruent
+flankers likely activated competing motor responses, requiring
+participants to suppress irrelevant information and selectively attend
+to the target. This supports the idea that attentional selection is not
+fully efficient and that irrelevant stimuli are processed automatically,
+interfering with performance \citep{eriksen1974}.
+
+Beyond replicating the original findings, the present results are also
+consistent with contemporary models of cognitive control. According to
+the conflict monitoring theory, the cognitive system continuously
+detects conflict between competing responses and recruits control
+processing to resolve it (Bovinick et al., 2001). Incongruent trials
+generate higher levels of conflict because flankers activate an opposing
+response, leading to increased processing time. Conflict is associated
+with activity in the anterior cingulate cortex (ACC), which plays a role
+in monitoring conflict and signaling the need for increased control
+\citep{botvinick2001}. The slower reaction times observed in this study
+are therefore consistent with increased cognitive effort required to
+resolve this conflict.
+
+The accuracy results further strengthen this interpretation. While
+participants performed well in congruent trials (M = 0.97), the accuracy
+dropped substantially in incongruent trials (M= 0.81), and this
+difference is statistically significant, F(1, 15) = 10.70, p = .005,
+confirming that incongruent trials not only slow responses but also
+significantly increase error rates. Although the effect size for
+accuracy is smaller than for reaction time, it still indicates a
+reliable impact on interference on performance. This dual cost, with
+both speed and accuracy, has been widely reported and is considered a
+hallmark of interference paradigms \citep{ridderinkhof2004}. This
+reduction in accuracy suggests that, in some cases, participants failed
+to fully inhibit response activated by the flankers, leading to
+incorrect responses.
+
+Importantly, the magnitude of the effect observed in this study is
+comparable to previous experimental findings. For instance,
+\citet{fan2002} demonstrated that incongruent trials consistently
+produce slower responses in attention network paradigms, which reflected
+the efficiency of executive control mechanisms. Similarly,
+\citet{gratton1992} showed that interference effects in flanker tasks
+are not static but can vary depending on previous trial history, a
+phenomenon known as the Gratton effect. Although sequential effects were
+not directly analyzed in the present study, the strong interference
+observed suggests that similar adaptive control processes may be
+occurring.
+
+\subsection{Two-way Analysis: Role of
+Direction}\label{two-way-analysis-role-of-direction}
+
+The inclusion of second analysis (two-way repeated measures ANOVA)
+further extends the interpretation of these findings. By incorporating
+direction (left vs.~right) as a second independent variable, the design
+allows for the examination of spatial influences on attention. This
+approach is similar to combined flanker-Simon paradigms, where both
+stimulus identity and spatial location contribute to interference
+\citep{stoffels1988}. Spatial and identity-based conflicts can interact,
+suggesting that multiple cognitive systems contribute to response
+selection \citep{hommel1993}. Although the primary effect in the present
+study was driven by congruency, future analyses could explore whether
+direction interacts with congruency to produce additional interference
+effects.
+
+The two-way ANOVA results showed that the main effect of congruency on
+reaction time remained a significant main effect of congruency,F(1, 14)
+= 8.60, p = .011, further supporting the impact of incongruency on
+performance accuracy. However, neither the main effect of direction,
+F(1, 14) = 0.52, p = .484, nor the interaction between congruency and
+direction, F(1, 14) = 0.19, p = .673, reached significance. These
+findings indicate that accuracy differences are driven primarily by
+congruency and not by spatial response factors.
+
+Another important implication of the current findings relates to a
+broader understanding of selective attention. The results support the
+idea that attention operates as a limited-capacity system that must
+actively filter out irrelevant information. When distractors are highly
+similar or strongly associated with the response, they are more
+difficult to ignore, leading to increased interference. This aligns with
+evidence from electrophysiological studies showing that incongruent
+trials elicit larger event-related potentials associated with conflict
+processing \citep{clayson2011}. These neural findings complement
+behavioural results by demonstrating that conflict processing occurs
+rapidly and automatically.
+
+\subsection{Limitations and Future
+Implementations}\label{limitations-and-future-implementations}
+
+The present study has several limitations that should be considered when
+interpreting the findings. First, the small sample size (N = 16) reduces
+statistical power and limits the generalizability of the results. In
+addition, the use of a restricted sample of University of Waterloo
+undergraduate students limits variability in demographic characteristics
+such as age and education level, making the findings less representative
+of the general population.
+
+A further limitation relates to the task design. For example, each
+participant completed only 20 experimental trials, which may reduce the
+reliability of both reaction time and accuracy measures. With such a
+small number of trials, individual variability and random fluctuations
+in performance are more likely to influence overall results.
+Additionally, although trials were randomly generated, this meant that
+they were not fully balanced across conditions. This may have resulted
+in unequal representation of congruent and incongruent trials, which
+would introduce variability and reduce the precision of comparisons
+between conditions.
+
+Future research should address these limitations by increasing sample
+size and recruiting more diverse participants to improve
+generalizability. Moreover, increasing the number of trials and ensuring
+a fully balanced design would help to enhance the reliability and
+validity of the findings. Future studies could also extend this work by
+examining individual differences in cognitive control across populations
+to provide deeper insight into how interference effects may vary across
+contexts.
+
+Lastly, across both one-way and two-way analyses in the present study,
+congruency consistently emerged as the only significant factor
+influencing performance, while direction and interaction effects were
+non-significant. This pattern helps to reinforce the interpretation that
+cognitive interference in the flanker task is primarily driven by
+response conflict rather than spatial processing.
+
 \section{Conclusion}\label{conclusion}
 
 Consistent with theories of selective attention and cognitive control,
@@ -410,9 +630,13 @@ Overall, despite its limitations, this study successfully replicates a
 well-established cognitive effect and demonstrates the robustness of the
 flanker paradigm as a tool for studying attention and response conflict.
 
+\section*{References}\label{references}
+\addcontentsline{toc}{section}{References}
 
-\renewcommand\refname{References}
+\renewcommand{\bibsection}{}
 \bibliography{bibliography.bib}
+
+
 
 
 
